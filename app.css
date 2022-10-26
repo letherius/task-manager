@@ -1,0 +1,63 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+h1 {
+  background-color: #212121;
+  color: white;
+  padding: 5px 0;
+  text-align: center;
+  margin: 0;
+}
+
+.parent {
+  display: flex;
+  height: 89%;
+  background: url(https://previews.123rf.com/images/foottoo/foottoo1302/foottoo130200567/17977956-modern-concrete-wall-and-grass-nice-background-with-space-for-text.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.list {
+  flex: 3;
+}
+
+.form {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.151);
+}
+
+.my-control {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.my-control label {
+  width: 110px;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.my-control input,
+.my-control select,
+.my-control textarea {
+  flex-grow: 1;
+}
+
+.centered {
+  text-align: center;
+}
+
+.icon {
+  font-size: 35px;
+  color: #6a6a6a;
+  cursor: pointer;
+}
+
+.fas {
+  color: red;
+}
