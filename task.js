@@ -17,6 +17,8 @@ class Task {
     this.contact = contact;
     this.participants = participants;
     this.color = color;
+
+    this.developer = "Letherius";
   }
 
   test() {

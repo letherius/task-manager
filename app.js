@@ -44,10 +44,20 @@ function saveTask() {
     participants,
     color
   );
-  // task.test();
-  console.log(task);
-  display(task); // <- it should console log the title
-  clearForm(); // should clear all the input field values
+
+  $.ajax({
+    type: "POST",
+    url: "http://fsdiapi.azurewebsites.net/api/tasks/",
+    data: JSON.stringify(task),
+    contentType: "application/json",
+    success: function (res) {
+      display(task);
+      clearFrom();
+    },
+    error: function (error) {
+      console.log(error);
+    },
+  });
 }
 
 function clearForm() {
@@ -61,9 +71,9 @@ function clearForm() {
 }
 
 function display(task) {
-  console.log(task.title);
+  console.log(task);
 
-  let syntax = `<div class="task">
+  let syntax = `<div class="task" style="border-color:${task.color}">
   <div class="head">
   <h5>${task.title}</h5>
   <p>${task.description}</p>
@@ -83,9 +93,44 @@ function display(task) {
   $("#task-list").append(syntax);
 }
 
+function testGet() {
+  $.ajax({
+    type: "GET",
+    url: "http://fsdiapi.azurewebsites.net/",
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (error) {
+      console.log(error);
+    },
+  });
+}
+
+function fetchTasks() {
+  $.ajax({
+    type: "GET",
+    url: "http://fsdiapi.azurewebsites.net/api/tasks",
+    success: function (response) {
+      let list = JSON.parse(response);
+      // travel the list with for loop
+      for (let i = 0; i < list.length; i++) {
+        // get every object inside the list
+        let task = list[i];
+        if (task.developer === "Letherius") {
+          display(task);
+        }
+      }
+    },
+    error: function (error) {
+      console.log(error);
+    },
+  });
+}
+
 function init() {
   console.log("Task manager");
   // load data
+  fetchTasks();
 
   // hook events
   $("#btnSave").click(saveTask);
